@@ -3,16 +3,13 @@ drive.mount("/content/drive", force_remount=True)
 
 import pandas as pd
 
-# 1. Load the raw data from Google Drive
 file_path = '/content/drive/MyDrive/physical_chemical_properties_of_organic_substances.csv'
 df = pd.read_csv(file_path)
 
-# 2. Initial Cleaning: Drop rows with duplicate CAS numbers
 initial_rows = len(df)
 df = df.drop_duplicates(subset=['CAS'], keep='first')
 print(f"Dropped {initial_rows - len(df)} duplicate CAS entries. Clean rows: {len(df)}")
 
-# 3. Break it into 5 Relational Tables
 basic_id_cols = ['CAS', 'name', 'improved_name', 'formula', 'smiles', 'InChI', 'InChIKey']
 df_id = df[basic_id_cols]
 
@@ -28,7 +25,6 @@ df_safety = df[safety_cols]
 flag_cols = ['CAS'] + df.columns[22:].tolist()
 df_flags = df[flag_cols]
 
-# 4. Export to clean CSVs for SSMS
 df_id.to_csv('1_Basic_Identification.csv', index=False)
 df_nature.to_csv('2_Chemical_Nature.csv', index=False)
 df_molecular.to_csv('3_Molecular_Properties.csv', index=False)
