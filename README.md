@@ -1,7 +1,3 @@
-<img width="863" height="431" alt="Screenshot 2026-06-20 222853" src="https://github.com/user-attachments/assets/ca4fadca-98ae-4f1e-a60d-bbcd19c1d4b6" /># ⚗️ Chemical Property Analysis & ETL Pipeline
-
-An end-to-end data engineering and analytics project bridging physical chemistry and relational database architecture. This pipeline cleans, models, and analyzes the macroscopic thermodynamic properties and lipophilicity (LogP) of over 4,000 organic molecules.
-
 ## 📌 Summary
 This project demonstrates the extraction, transformation, and loading (ETL) of raw chemical datasets into a structured, 5-table relational database. By leveraging **Python (pandas)** for programmatic data cleansing and **SQL** for querying, this repository mathematically investigates molecular weight distributions, phase change thermodynamics, and the influence of aromaticity on lipid-phase partitioning.
 
