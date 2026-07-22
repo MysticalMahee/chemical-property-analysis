@@ -77,7 +77,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 ## 🔬 Key Analytical Queries & Findings
 
 * <ins>**In all SQL scripts below, we have always used a primary starting script to help us visualise which columns we will be working with and the 2nd script answered out desired question.<ins>**
-* *** *** N.B.: FOR PART 1,2,3 and 4, THE TOP SCRIPTS OF EACH OF THE SQL SCRIPTS HAVE DISPLAYED OUTPUTS WHICH HAVE NOT BEEN FULLY TAKEN IN THE SCREENSHOTS, DUE TO LARGE SIZE OF TABLE, HENCE ONLY A SMALL PART HAS BEEN SHOWN. *** ***
+* ***N.B.: FOR PART 1,2,3 and 4, THE TOP SCRIPTS OF EACH OF THE SQL SCRIPTS HAVE DISPLAYED OUTPUTS WHICH HAVE NOT BEEN FULLY TAKEN IN THE SCREENSHOTS, DUE TO LARGE SIZE OF TABLE, HENCE ONLY A SMALL PART HAS BEEN SHOWN.***
 
 ### Part 1: Thermodynamic Temperatures by Superclass
 * **QUESTION:** Which superclass has the highest average boiling point?
