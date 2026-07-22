@@ -12,10 +12,10 @@ This project demonstrates the extraction, transformation, and loading (ETL) of r
 The raw dataset contained thousands of organic molecules with missing values, duplicate CAS registry numbers, and unformatted columns. A Python script was developed to programmatically clean the data and resolve schema inconsistencies before export. 
 * Since we have used Google Colab, we first imported out raw dataset from Google Drive to colab using the (`drive.mount`) command:
 
-'''
+```
 from google.colab import drive
 drive.mount("/content/drive", force_remount=True)
-'''
+```
 
 * Then, we have used the (`pandas`) library and loaded the raw data from Google Drive
 * Then, we have applied some initial cleaning, in which we drop rows with duplicate CAS numbers using the script:
