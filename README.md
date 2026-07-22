@@ -19,20 +19,46 @@ drive.mount("/content/drive", force_remount=True)
 
 * Then, we have used the (`pandas`) library and loaded the raw data from Google Drive
 * Then, we have applied some initial cleaning, in which we drop rows with duplicate CAS numbers using the script:
-  
-<img width="691" height="69" alt="Screenshot 2026-06-20 210829" src="https://github.com/user-attachments/assets/a305e4ad-281b-429f-89f2-5c14e319568e" />
+
+```python
+initial_rows = len(df)
+df = df.drop_duplicates(subset=['CAS'], keep='first')
+print(f"Dropped {initial_rows - len(df)} duplicate CAS entries. Clean rows: {len(df)}")
+```
 
 * We have used the (`len(df)`) command, which returns the length of the DataFrame: i.e. the length value of the number of rows dropped after applying the above script, and we can see that 49 rows were dropped, telling us 49 entries with the same CAS entry were present, hence there were copies of the same molecules present in the raw dataset, which we do not require.
 
-<img width="378" height="17" alt="Screenshot 2026-06-20 212122" src="https://github.com/user-attachments/assets/bdcbf270-d9ae-48e3-a804-b50271f78bd9" />
+```python
+basic_id_cols = ['CAS', 'name', 'improved_name', 'formula', 'smiles', 'InChI', 'InChIKey']
+df_id = df[basic_id_cols]
+
+chemical_nature_cols = ['CAS', 'kingdom', 'superclass', 'class', 'direct_parent', 'substituents', 'is_organic']
+df_nature = df[chemical_nature_cols]
+
+molecular_cols = ['CAS', 'molecular_weight', 'melting_point_K', 'boiling_point_K', 'heat_of_fusion', 'heat_of_vaporization', 'critical_temperature', 'critical_pressure']
+df_molecular = df[molecular_cols]
+
+safety_cols = ['CAS', 'flash_point', 'logP']
+df_safety = df[safety_cols]
+
+flag_cols = ['CAS'] + df.columns[22:].tolist()
+df_flags = df[flag_cols]
+```
 
 * Then, We have carefully selected which columns we wish to categorise, which put together form a specific chemical nature, such as temperatures, classes, functional groups etc. This can be done with the following python script:
 
-<img width="968" height="283" alt="Screenshot 2026-06-20 211223" src="https://github.com/user-attachments/assets/a795a49d-8d86-4c1f-946c-7b0587068758" />
 
 * Finally, we have categorised the above columns into 5 different datasets, each classified accordingly to their chemical nature, and this is trivially done with the given script:
-  
-<img width="525" height="144" alt="Screenshot 2026-06-20 211600" src="https://github.com/user-attachments/assets/9c1d4ccc-afc9-488c-acdf-8ee19c80a880" />
+
+```python
+df_id.to_csv('1_Basic_Identification.csv', index=False)
+df_nature.to_csv('2_Chemical_Nature.csv', index=False)
+df_molecular.to_csv('3_Molecular_Properties.csv', index=False)
+df_safety.to_csv('4_Safety_Hazards.csv', index=False)
+df_flags.to_csv('5_Functional_Flags.csv', index=False)
+
+print("Ready to use for SQL manipulation")
+```
 
 
 
@@ -44,8 +70,6 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 3. `3_Molecular_Properties`
 4. `4_Safety_Hazards`
 5. `5_Functional_Flags`
-
-<img width="265" height="189" alt="Screenshot 2026-06-20 210107" src="https://github.com/user-attachments/assets/7b0f3d28-78eb-4085-9e18-2716efc19a8b" />
 
 
 ---
