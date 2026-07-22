@@ -80,10 +80,8 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 ### Part 1: Thermodynamic Temperatures by Superclass
 * **QUESTION:** Which superclass has the highest average boiling point?
-* **Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data and used the `AVG` function to find the average boiling points of each superclasses present. We have also used the `TOP 1` command to ensure the first superclass average with the highest boiling point is printed, as linked with the `DESC` command. We can see from both the SQL script and output, we get the following:
+* **Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data and used the `AVG` function to find the average boiling points of each superclasses present. We have also used the `TOP 1` command to ensure the first superclass average with the highest boiling point is printed, as linked with the `DESC` command. From the SQL_Scripts/01_Highest_Boiling_Point_by_Superclass.sql file, we get the following output: 
 
-* SQL Script:
-<img width="826" height="395" alt="Screenshot 2026-06-20 215846" src="https://github.com/user-attachments/assets/e46f019c-1a47-432f-8c17-7d6d5f6d0b08" />
 
 * Output for both script 1 and 2 respectively:
 <img width="283" height="297" alt="Screenshot 2026-06-20 215935" src="https://github.com/user-attachments/assets/7022fd21-2f62-4736-bd62-1a8dd83b04db" />
@@ -91,10 +89,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 ### Part 2: Ranking Heavy Molecules
 * **QUESTION:** Which compounds have the highest molecular weights? Show the top 5 heaviest molecules
-* **Method:**  Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data and used the `MAX` function to output the highest value present. We have also used the `TOP 5` command to ensure the first 5 heaviest molecules are printed, as linked with the `DESC` command.
-  
-* SQL Script:
-<img width="865" height="419" alt="Screenshot 2026-06-20 220628" src="https://github.com/user-attachments/assets/4b5b7e87-f8ba-4723-b594-9a1a6642eceb" />
+* **Method:**  Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data and used the `MAX` function to output the highest value present. We have also used the `TOP 5` command to ensure the first 5 heaviest molecules are printed, as linked with the `DESC` command. From the SQL_Scripts/02_Heaviest_Molecules_Window_Function.sql file, we get the following output:
 
 * Output for both script 1 and 2 respectively:
 <img width="281" height="246" alt="Screenshot 2026-06-20 220642" src="https://github.com/user-attachments/assets/11a93665-e4d3-4d0d-a235-34189a80e025" />
@@ -104,10 +99,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 ### Part 3: Aromaticity vs Lipophilicity (LogP)
 **Objective:** Statistically quantify the thermodynamic drive of delocalized pi-systems into lipid phases by comparing the average partition coefficient (LogP) of aromatic vs non-aromatic compounds.
-**Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data. Used `JOIN` between the Functional Flags and Safety Hazards tables, aggregating the average LogP. 
-
-* SQL Script:
-<img width="783" height="504" alt="image" src="https://github.com/user-attachments/assets/15982b29-5c00-4515-8632-7114ed6720e1" />
+**Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data. Used `JOIN` between the Functional Flags and Safety Hazards tables, aggregating the average LogP. From the SQL_Scripts/03_LogP_Aromaticity_Analysis.sql file, we get the following output:
 
 * Output for both script 1 and 2 respectively:
 <img width="274" height="309" alt="image" src="https://github.com/user-attachments/assets/a663da7b-3e6a-41c3-b13e-fc6d8e2a8a24" />
@@ -117,10 +109,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 ### Part 4: Most Frequent Classes
 **Objective:** Which chemical classes appear most frequently?
-**Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data. Used `COUNT(*)` on class to count all rows in the [2_chemical_nature] table, including rows with NULL values. Furthermore, the use of the `WITH TIES` command was been used as there could be classes with equal repetitions, and of course we wish to also display those classes. If we knew for fact that there will be only 1 class with highest repetition, we can remove the `WITH TIES` part, else keep that if we don’t know if there any multiple classes with equal number of repetitions. As usual, we also have the `TOP 1` command to make sure the superclass with the most repetitions gets printed.
-
-* SQL Script:
-<img width="863" height="431" alt="Screenshot 2026-06-20 222853" src="https://github.com/user-attachments/assets/324f2409-f58d-4e47-87f9-7c6bcf15310e" />
+**Method:** Utilised `GROUP BY` aggregations and `ORDER BY` to filter out null thermodynamic readings and rank the data. Used `COUNT(*)` on class to count all rows in the [2_chemical_nature] table, including rows with NULL values. Furthermore, the use of the `WITH TIES` command was been used as there could be classes with equal repetitions, and of course we wish to also display those classes. If we knew for fact that there will be only 1 class with highest repetition, we can remove the `WITH TIES` part, else keep that if we don’t know if there any multiple classes with equal number of repetitions. As usual, we also have the `TOP 1` command to make sure the superclass with the most repetitions gets printed. From the SQL_Scripts/04_Chemical_Class_Frequency_Count.sql file, we get the following output:
 
 * Output for both script 1 and 2 respectively:
 <img width="234" height="226" alt="Screenshot 2026-06-20 222842" src="https://github.com/user-attachments/assets/37b60e82-ac9f-4e4f-adbe-8d47a2f40e5b" />
@@ -129,10 +118,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 ### Part 5: Unpivoting Functional Group
 **Objective:** Transform wide boolean flags (e.g., `has_alcohol`, `has_ketone`) into a tall, queryable format to analyze how specific functional groups impact average melting and boiling points. Also, find the liquid range in Kelvin.
-**Method:** Utilised the `CROSS APPLY` (UNPIVOT) function to restructure the dataset. The 1st prompt (lines 6-29) will convert the columns from [dbo].[5_Functional_Flags] into rows. This is done because the GROUP BY command groups values horizontally and not vertically. Our functional groups are in column formats, hence if we wish to do maths with those entries, we need to “ rotate the functional groups column by 90° “ as the `CROSS APPLY` command only does the maths in rows and not columns. From there, we have named the functional groups headers into more simple names, as shown in red writing. And for cleanliness, we have only dealt with values whose molecules do have a functional group, which are given by either “TRUE” or “FALSE”: i.e. 1 or 0, hence the command in line 29. The use of the `CAST` function was used explicitly to convert a value of one data type to another, which helped us find out desired temperature requests from the question.
-
-* SQL Script:
-<img width="755" height="476" alt="Screenshot 2026-06-20 224504" src="https://github.com/user-attachments/assets/86408e49-de52-41c2-8f9d-73beaf6a8c7d" />
+**Method:** Utilised the `CROSS APPLY` (UNPIVOT) function to restructure the dataset. The 1st prompt (lines 6-29) will convert the columns from [dbo].[5_Functional_Flags] into rows. This is done because the GROUP BY command groups values horizontally and not vertically. Our functional groups are in column formats, hence if we wish to do maths with those entries, we need to “ rotate the functional groups column by 90° “ as the `CROSS APPLY` command only does the maths in rows and not columns. From there, we have named the functional groups headers into more simple names, as shown in red writing. And for cleanliness, we have only dealt with values whose molecules do have a functional group, which are given by either “TRUE” or “FALSE”: i.e. 1 or 0, hence the command in line 29. The use of the `CAST` function was used explicitly to convert a value of one data type to another, which helped us find out desired temperature requests from the question. From the SQL_Scripts/05_Functional_Group_Unpivot_Thermodynamics.sql file, we get the following output:
 
 
 * Output for both script 1 and 2 respectively:
