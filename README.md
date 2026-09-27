@@ -28,6 +28,8 @@ print(f"Dropped {initial_rows - len(df)} duplicate CAS entries. Clean rows: {len
 
 * We have used the `len(df)` command, which returns the length of the DataFrame: i.e. the length value of the number of rows dropped after applying the above script, and we can see that 49 rows were dropped, telling us 49 entries with the same CAS entry were present, hence there were copies of the same molecules present in the raw dataset, which we do not require.
 
+* Then, We have carefully selected which columns we wish to categorise, which put together form a specific chemical nature, such as temperatures, classes, functional groups etc. This can be done with the following python script:
+
 ```python
 basic_id_cols = ['CAS', 'name', 'improved_name', 'formula', 'smiles', 'InChI', 'InChIKey']
 df_id = df[basic_id_cols]
@@ -44,8 +46,6 @@ df_safety = df[safety_cols]
 flag_cols = ['CAS'] + df.columns[22:].tolist()
 df_flags = df[flag_cols]
 ```
-
-* Then, We have carefully selected which columns we wish to categorise, which put together form a specific chemical nature, such as temperatures, classes, functional groups etc. This can be done with the following python script:
 
 
 * Finally, we have categorised the above columns into 5 different datasets, each classified accordingly to their chemical nature, and this is trivially done with the given script:
