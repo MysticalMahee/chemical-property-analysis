@@ -26,7 +26,7 @@ df = df.drop_duplicates(subset=['CAS'], keep='first')
 print(f"Dropped {initial_rows - len(df)} duplicate CAS entries. Clean rows: {len(df)}")
 ```
 
-* We have used the (`len(df)`) command, which returns the length of the DataFrame: i.e. the length value of the number of rows dropped after applying the above script, and we can see that 49 rows were dropped, telling us 49 entries with the same CAS entry were present, hence there were copies of the same molecules present in the raw dataset, which we do not require.
+* We have used the `len(df)` command, which returns the length of the DataFrame: i.e. the length value of the number of rows dropped after applying the above script, and we can see that 49 rows were dropped, telling us 49 entries with the same CAS entry were present, hence there were copies of the same molecules present in the raw dataset, which we do not require.
 
 ```python
 basic_id_cols = ['CAS', 'name', 'improved_name', 'formula', 'smiles', 'InChI', 'InChIKey']
