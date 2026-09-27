@@ -118,7 +118,7 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 
 
 ### Part 5: Unpivoting Functional Group
-* **Objective:** Transform wide boolean flags (e.g., `has_alcohol`, `has_ketone`) into a tall, queryable format to analyze how specific functional groups impact average melting and boiling points. Also, find the liquid range in Kelvin.
+* **Objective:** Transform wide boolean flags (e.g. `has_alcohol`, `has_ketone`) into a queryable format to analyze how specific functional groups impact average melting and boiling points. Also, find the liquid range in Kelvin.
 * **Method:** Utilised the `CROSS APPLY` (UNPIVOT) function to restructure the dataset. The 1st prompt (lines 6-29) will convert the columns from [dbo].[5_Functional_Flags] into rows. This is done because the GROUP BY command groups values horizontally and not vertically. Our functional groups are in column formats, hence if we wish to do maths with those entries, we need to “ rotate the functional groups column by 90° “ as the `CROSS APPLY` command only does the maths in rows and not columns. From there, we have named the functional groups headers into more simple names, as shown in red writing. And for cleanliness, we have only dealt with values whose molecules do have a functional group, which are given by either “TRUE” or “FALSE”: i.e. 1 or 0, hence the command in line 29. The use of the `CAST` function was used explicitly to convert a value of one data type to another, which helped us find out desired temperature requests from the question. From the `SQL_Scripts/05_Functional_Group_Unpivot_Thermodynamics.sql` file, we get the following output:
 
 
@@ -129,4 +129,4 @@ From the above Python Script, we have outputted 5 distinct datasets, and they ar
 ---
 
 ## 💡 Conclusion
-This pipeline successfully transforms messy, chemical data into a robust relational model. By systematically categorizing over 4,000 molecules, the SQL queries successfully replicate known physical chemistry principles (e.g., the increased hydrophobicity of aromatic rings) purely through data-driven aggregation.
+This pipeline successfully transforms messy, chemical data into a robust relational model. By systematically categorizing over 4,000 molecules, the SQL queries successfully replicate known physical chemistry principles (e.g. the increased hydrophobicity of aromatic rings) purely through data-driven aggregation.
