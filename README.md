@@ -9,7 +9,7 @@ This project demonstrates the extraction, transformation, and loading (ETL) of r
 * **Querying & Analysis:** SQL Server Managent Studio 22 (SSMS), SQL (Window Functions, CTEs, UNPIVOT)
 
 ### 1. Data Ingestion & Cleansing (Python)
-The raw dataset contained thousands of organic molecules with missing values, duplicate CAS registry numbers, and unformatted columns. A Python script was developed to programmatically clean the data and resolve schema inconsistencies before export. 
+The raw dataset contained some organic molecules with missing values, duplicate CAS registry numbers, and unformatted columns. A Python script was developed to programmatically clean the data and resolve schema inconsistencies before export. 
 * Since we have used Google Colab, we first imported out raw dataset from Google Drive to colab using the (`drive.mount`) command:
 
 ```python
